@@ -1,0 +1,8 @@
+= My documentation
+API documentation of my book rest service;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
