@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Spring Rest Docs Demo</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						## Document your API with Spring Rest Docs
+
+						...or have your tests build your documentation
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### What is Spring Rest Docs?
+
+						* it's a library provided by the Spring developers
+						* it extends the `MockMvc` test framework
+						* it produces code snippets from `Controller` tests
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Demo
+
+						Create and document a Book API (*)
+
+						| Description        | Endpoint             |
+						| ------------- |:-------------  |
+						| Find book by ID | `GET /books/{id}` |
+						| Find all books  | `GET /books`      |
+						| Save a new book | `POST /books`      |
+
+						(*) Shortcuts will be taken
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 0
+						Project creation
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 1
+
+						`Book`, `BookController`, `BookControllerTest`
+
+						(*) shortcut: we will use the class `Book` both for the views and for the request body
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 2
+
+						* Add Rest Docs dependency
+						* Add Asciidoc plugin
+						* Add Maven resources plugin
+						* Add index.adoc
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 3
+
+						* `RestDocumentationConfiguration` with `@Bean RestDocumentationResultHandler`
+						* `SpringDocumentationTest` custom annotation
+						* Change `BookControllerTest`
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 4
+
+						* Add documentation instructions to `BookControllerTest`
+						* Change MockMvc imports to `RestDocumentationRequestBuilders`
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 5
+
+						* Check generated snippets
+						* Fill `index.adoc`
+						* Generate the documentation
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Step 6
+
+						* Run the application
+						* Browse the docs
+					</textarea>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
