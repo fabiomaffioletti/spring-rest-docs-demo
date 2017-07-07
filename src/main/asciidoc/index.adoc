@@ -6,3 +6,53 @@ API documentation of my book rest service;
 :toc: left
 :toclevels: 2
 :sectlinks:
+
+== Books
+
+=== Find a book
+You can find a book using its ID. Here is an example of the request:
+
+include::{snippets}/book-controller-test/test-it-should-find-a-book-with-its-id/http-request.adoc[]
+
+The ID path parameter is required:
+
+include::{snippets}/book-controller-test/test-it-should-find-a-book-with-its-id/path-parameters.adoc[]
+
+The response looks like this:
+
+include::{snippets}/book-controller-test/test-it-should-find-a-book-with-its-id/http-response.adoc[]
+
+And the object returned looks like this:
+
+include::{snippets}/book-controller-test/test-it-should-find-a-book-with-its-id/response-fields.adoc[]
+
+=== Get the list of books
+You can get the list of books with this request:
+
+include::{snippets}/book-controller-test/test-it-should-find-all-books/http-request.adoc[]
+
+And you can expect the response to be like this:
+
+include::{snippets}/book-controller-test/test-it-should-find-all-books/http-response.adoc[]
+
+The list has this form:
+
+include::{snippets}/book-controller-test/test-it-should-find-all-books/response-fields.adoc[]
+
+
+=== Save a new book
+To save a new book you can call this endpoint:
+
+include::{snippets}/book-controller-test/test-it-should-save-a-book/http-request.adoc[]
+
+It expects the payload to be like this:
+
+include::{snippets}/book-controller-test/test-it-should-save-a-book/request-fields.adoc[]
+
+And it returns the saved object:
+
+include::/{snippets}/book-controller-test/test-it-should-save-a-book/http-response.adoc[]
+
+In this form:
+
+include::/{snippets}/book-controller-test/test-it-should-save-a-book/response-fields.adoc[]
