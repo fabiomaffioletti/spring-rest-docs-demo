@@ -13,11 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,14 +38,18 @@ public class BookControllerTest {
 
     @Test
     public void testItShouldFindABookWithItsId() throws Exception {
-        mockMvc.perform(get("/books/100"))
+        mockMvc.perform(get("/books/{id}", 100))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", is(100)))
                 .andExpect(jsonPath("title", is("My test book")))
-                .andDo(restDocumentationResultHandler.document(responseFields(
-                        fieldWithPath("id").description("The book id"),
-                        fieldWithPath("title").description("The book title")
-                )));
+                .andDo(restDocumentationResultHandler.document(
+                        pathParameters(
+                                parameterWithName("id").description("The book id")
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("The book id"),
+                                fieldWithPath("title").description("The book title")
+                        )));
     }
 
     @Test
